@@ -1,0 +1,37 @@
+<%= render "shared/header" %>
+<div class='item-contents'>
+    <ul class='item-lists'>
+      <% @items.each do |item| %>
+      <li class='list'>
+        <%= link_to user_path(item.user_id) do %>
+          出品者: <%= item.user.nickname %>
+        <% end %>
+        
+        <%= link_to item_path(item.id) do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+
+          <div class='sold-out'>
+            <% if item.buyer_history.present? %>
+            <span>Sold Out!!</span>
+            <% end %>
+          </div>
+
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.shipping_free_status.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
