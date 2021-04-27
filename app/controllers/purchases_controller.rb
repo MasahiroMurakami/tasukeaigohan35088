@@ -1,5 +1,4 @@
 class PurchasesController < ApplicationController
-  class PurchasesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_item, only: [:index, :create]
     before_action :set_condition, only: [:index, :create]
@@ -36,7 +35,13 @@ class PurchasesController < ApplicationController
       end
     end
   
-    
+    def pay_item
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: buyer_history_params[:token],
+          currency: 'jpy'
+        )
+    end
   
-  end
 end
