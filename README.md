@@ -53,6 +53,7 @@
 | ----------------------- | ------------- | ------------------------------ |
 | store_name              | string        | null: false                    |
 | store_address           | text          | null: false                    |
+| store_phone_number      | string        | null: false                    |
 | name                    | string        | null: false                    |
 | info                    | text          | null: false                    |
 | category_id             | integer       | null: false                    |

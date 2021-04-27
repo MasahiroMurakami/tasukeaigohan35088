@@ -3,6 +3,7 @@ class Item < ApplicationRecord
     validates :image
     validates :store_name
     validates :store_address
+    validates :store_phone_number
     validates :name
     validates :info
     validates :price, format: { with: /\A[0-9]+\z/ },

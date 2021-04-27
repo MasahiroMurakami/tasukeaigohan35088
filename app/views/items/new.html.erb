@@ -61,7 +61,7 @@
     <%# 販売価格 %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
-        <span>販売価格<br>(¥300〜9,999,999)</span>
+        <span>販売価格<br>(¥100〜9,999,999)</span>
         <a class="question" href="#">?</a>
       </div>
       <div>
@@ -88,7 +88,7 @@
       </div>
     </div>
     <%# /販売価格 %>
-    <%# 店名と店舗住所 %>
+    <%# 店舗情報 %>
     <div class="new-items">
       <div class="weight-bold-text">
         店名
@@ -104,17 +104,23 @@
       </div>
       <div class="items-explain">
         <div class="weight-bold-text">
+          お問い合わせ先(電話番号)
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :store_phone_number, class:"items-text", id:"item-store_phone_number", placeholder:"問い合わせ用の連絡先を入力ください" ,maxlength:"11" %>
+      </div>
+      <div class="items-explain">
+        <div class="weight-bold-text">
           備考
         </div>
         <%= f.text_area :remarks, class:"items-text", id:"item-remarks", placeholder:"その他備考等がありましたら入力してください" ,maxlength:"1000" %>
       </div>
     </div>
-    <%# /商品名と商品説明 %>
+    <%# /店舗情報 %>
 
     <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
-        <a href="#">お客様間のトラブルについて、</a>
         <a href="#">注意事項</a>
         を必ずご確認ください。
       </p>
