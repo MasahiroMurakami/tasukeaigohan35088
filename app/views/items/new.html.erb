@@ -5,11 +5,9 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with local: true do |f| %>
+    <%= form_with model:@item, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%# render 'shared/error_messages', model: f.object %>
-    <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
+    <%= render 'shared/error_messages', model: f.object %>
 
     <%# 出品画像 %>
     <div class="img-upload">
@@ -21,23 +19,23 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-        <%= f.file_field :hoge, id:"item-image" %>
+        <%= f.file_field :image, id:"item-image" %>
       </div>
     </div>
     <%# /出品画像 %>
     <%# 商品名と商品説明 %>
     <div class="new-items">
       <div class="weight-bold-text">
-        商品名
+        料理名
         <span class="indispensable">必須</span>
       </div>
-      <%= f.text_area :hoge, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+      <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_area :hoge, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
+        <%= f.text_area :info, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（食材、賞味期限など）例）比内地鶏のモモ肉を使ったチキンステーキにレモンマスタードソースでさっぱり仕上げてます。本日中にお召し上がりください。" ,rows:"7" ,maxlength:"1000" %>
       </div>
     </div>
     <%# /商品名と商品説明 %>
@@ -50,46 +48,20 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-category"}) %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
-          商品の状態
+          アレルギー物質
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= f.text_area :allergies, class:"items-text", id:"item-allergies", placeholder:"アレルギー物質が含まれる食材がある場合はこちらに入力してください。無い場合は無しと入力してください。" ,rows:"2" ,maxlength:"1000" %>
       </div>
     </div>
     <%# /商品の詳細 %>
 
-    <%# 配送について %>
-    <div class="items-detail">
-      <div class="weight-bold-text question-text">
-        <span>配送について</span>
-        <a class="question" href="#">?</a>
-      </div>
-      <div class="form">
-        <div class="weight-bold-text">
-          配送料の負担
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
-        <div class="weight-bold-text">
-          発送元の地域
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-prefecture"}) %>
-        <div class="weight-bold-text">
-          発送までの日数
-          <span class="indispensable">必須</span>
-        </div>
-        <%= f.collection_select(:hoge, [], :hoge, :hoge, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
-      </div>
-    </div>
-    <%# /配送について %>
-
     <%# 販売価格 %>
     <div class="sell-price">
       <div class="weight-bold-text question-text">
-        <span>販売価格<br>(¥300〜9,999,999)</span>
+        <span>販売価格<br>(¥100〜9,999,999)</span>
         <a class="question" href="#">?</a>
       </div>
       <div>
@@ -99,7 +71,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -116,17 +88,45 @@
       </div>
     </div>
     <%# /販売価格 %>
+    <%# 店舗情報 %>
+    <div class="new-items">
+      <div class="weight-bold-text">
+        店名
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :store_name, class:"items-text", id:"item-store-name", placeholder:"店名を入力してください" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          店舗住所
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :store_address, class:"items-text", id:"item-store-address", placeholder:"店舗の住所を正しく入力してください" ,rows:"5" ,maxlength:"1000" %>
+      </div>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          お問い合わせ先(電話番号)
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :store_phone_number, class:"items-text", id:"item-store_phone_number", placeholder:"問い合わせ用の連絡先を入力ください" ,maxlength:"11" %>
+      </div>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          備考
+        </div>
+        <%= f.text_area :remarks, class:"items-text", id:"item-remarks", placeholder:"その他備考等がありましたら入力してください" ,maxlength:"1000" %>
+      </div>
+    </div>
+    <%# /店舗情報 %>
 
     <%# 注意書き %>
     <div class="caution">
       <p class="sentence">
-        <a href="#">禁止されている出品、</a>
-        <a href="#">行為</a>
+        <a href="#">注意事項</a>
         を必ずご確認ください。
       </p>
       <p class="sentence">
-        またブランド品でシリアルナンバー等がある場合はご記載ください。
-        <a href="#">偽ブランドの販売</a>
+        商品や取引についての不明点は直接販売店へお問い合わせください。
+        <a href="#">       イタズラや詐欺行為</a>
         は犯罪であり処罰される可能性があります。
       </p>
       <p class="sentence">
@@ -148,12 +148,12 @@
   <footer class="items-sell-footer">
     <ul class="menu">
       <li><a href="#">プライバシーポリシー</a></li>
-      <li><a href="#">フリマ利用規約</a></li>
+      <li><a href="#">利用規約</a></li>
       <li><a href="#">特定商取引に関する表記</a></li>
     </ul>
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
     <p class="inc">
-      ©︎Furima,Inc.
+      ©︎Tasukeai Gohan,Inc.
     </p>
   </footer>
 </div>

@@ -1,0 +1,40 @@
+<%= render "shared/header" %>
+<div class='main'>
+
+  <div class='item-contents'>
+    <h2 class='title'><%= @user.nickname %>さんの出品一覧</h2>
+    <h2 class='title'>店舗名：<%= @item.store_name %></h2>
+    <ul class='item-lists'>
+      <li class='list'>
+        <% @user.items.each do |item| %>
+        <%= link_to item_path(item.id) do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" %>
+
+          <div class='sold-out'>
+            <% if item.buyer_history.present? %>
+            <span>Sold Out!!</span>
+            <% end %>
+          </div>
+
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br><%= item.category.name %></span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
