@@ -147,25 +147,25 @@ RSpec.describe User, type: :model do
       it '電話番号が空では購入できない' do
         @user.phone_number = ''
         @user.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Phone number can't be blank")
+        expect(@user.errors.full_messages).to include("Phone number can't be blank")
       end
 
       it '電話番号は半角数値でないと購入できない' do
         @user.phone_number = '０８０１２３４５６７８'
         @user.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Phone number is not a number")
+        expect(@user.errors.full_messages).to include("Phone number is not a number")
       end
 
       it '電話番号が11桁を超えると購入できない' do
         @user.phone_number = '080123456789'
         @user.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@user.errors.full_messages).to include("Phone number is invalid")
       end
 
       it '電話番号が10桁未満だと購入できない' do
         @user.phone_number = '080123456'
         @user.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@user.errors.full_messages).to include("Phone number is invalid")
       end
     end
   end
