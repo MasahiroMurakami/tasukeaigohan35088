@@ -13,12 +13,6 @@ RSpec.describe BuyerHistoryOrder, type: :model do
       it '全ての項目の入力が正しく入力されていれば購入できる' do
         expect(@buyer_history_order).to be_valid
       end
-
-      it '建物名が空でも購入できる' do
-        @buyer_history_order.building = ''
-        @buyer_history_order.valid?
-        expect(@buyer_history_order).to be_valid
-      end
     end
 
     context '商品購入できないとき' do
@@ -28,34 +22,16 @@ RSpec.describe BuyerHistoryOrder, type: :model do
         expect(@buyer_history_order.errors.full_messages).to include("Token can't be blank")
       end
 
-      it '郵便番号が空の場合は購入できない' do
-        @buyer_history_order.post_code = ''
+      it '名前が空だと購入できない' do
+        @buyer_history_order.name = ''
         @buyer_history_order.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Post code can't be blank")
+        expect(@buyer_history_order.errors.full_messages).to include("Name can't be blank")
       end
 
-      it '郵便番号にハイフンがないと購入できない' do
-        @buyer_history_order.post_code = '1234567'
+      it '住所が空だと購入できない' do
+        @buyer_history_order.address = ''
         @buyer_history_order.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Post code is invalid")
-      end
-
-      it '都道府県が未選択だと購入できない' do
-        @buyer_history_order.prefecture_id = 1
-        @buyer_history_order.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Prefecture must be other than 1")
-      end
-
-      it '市区町村が空だと購入できない' do
-        @buyer_history_order.city = ''
-        @buyer_history_order.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("City can't be blank")
-      end
-
-      it '番地が空だと購入できない' do
-        @buyer_history_order.addresses = ''
-        @buyer_history_order.valid?
-        expect(@buyer_history_order.errors.full_messages).to include("Addresses can't be blank")
+        expect(@buyer_history_order.errors.full_messages).to include("Address can't be blank")
       end
 
       it '電話番号が空では購入できない' do

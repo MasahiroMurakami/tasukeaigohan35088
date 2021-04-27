@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
   
     def buyer_history_params
       params.require(:buyer_history_order).permit(:name,
-                     :addresses, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+                     :address, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
     end
   
     def set_item
