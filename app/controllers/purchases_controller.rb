@@ -1,5 +1,4 @@
 class PurchasesController < ApplicationController
-  class PurchasesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_item, only: [:index, :create]
     before_action :set_condition, only: [:index, :create]
@@ -23,7 +22,7 @@ class PurchasesController < ApplicationController
   
     def buyer_history_params
       params.require(:buyer_history_order).permit(:name,
-                     :addresses, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+                     :address, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
     end
   
     def set_item
@@ -36,7 +35,13 @@ class PurchasesController < ApplicationController
       end
     end
   
-    
+    def pay_item
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: buyer_history_params[:token],
+          currency: 'jpy'
+        )
+    end
   
-  end
 end
