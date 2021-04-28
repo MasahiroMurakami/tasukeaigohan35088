@@ -1,6 +1,6 @@
 class BuyerHistoryOrder
   include ActiveModel::Model
-  attr_accessor :token, :name, :addresses, :phone_number, :user_id, :item_id
+  attr_accessor :token, :name, :address, :phone_number, :user_id, :item_id
 
   with_options presence: true do
     validates :token
