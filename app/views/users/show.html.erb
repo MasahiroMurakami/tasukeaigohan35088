@@ -3,7 +3,6 @@
 
   <div class='item-contents'>
     <h2 class='title'><%= @user.nickname %>さんの出品一覧</h2>
-    <h2 class='title'>店舗名：<%= @item.store_name %></h2>
     <ul class='item-lists'>
       <li class='list'>
         <% @user.items.each do |item| %>
@@ -13,7 +12,7 @@
 
           <div class='sold-out'>
             <% if item.buyer_history.present? %>
-            <span>Sold Out!!</span>
+            <span>売れました!</span>
             <% end %>
           </div>
 
