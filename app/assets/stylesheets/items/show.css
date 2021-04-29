@@ -52,7 +52,7 @@
 
 .item-red-btn {
   text-align: center;
-  background-color: #ea352d;
+  background-color: #ea792d;
   font-size: 24px;
   font-weight: bold;
   color: #FFF;
@@ -165,8 +165,8 @@
 
 .comment-btn {
   line-height: 48px;
-  background-color: #3CCACE;
-  border: 1px solid #3CCACE;
+  background-color: #ce7e3c;
+  border: 1px solid #ce7f3c;
   color: #fff;
   width: 50%;
   min-width: 150px;
@@ -194,13 +194,13 @@
 .change-item-btn {
   font-size: 30px;
   text-decoration: none;
-  color: #3CCACE;
+  color: #362e2e;
 }
 
 .another-item {
   display: block;
   margin: 30px 0px 8px;
-  color: #3CCACE;
+  color: #4b4848;
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;

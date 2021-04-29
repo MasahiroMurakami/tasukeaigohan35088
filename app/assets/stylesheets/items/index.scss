@@ -2,14 +2,46 @@ a {
   text-decoration: none;
 }
 
+.top-page-header{
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.items-sell-footer {
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.items-sell-contents {
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.item-show{
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
 .main {
-  background: #f8f8f8;
+  background-color: rgb(255, 255, 255);
+}
+
+.transaction-contents{
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.second-fotter {
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.second-header {
+  background-image: image-url('board-2065305_1920.jpg');
+}
+
+.registration-main{
+  background-image: image-url('board-2065305_1920.jpg');
 }
 
 /* 画面上部の「人生を変えるフリマアプリ」帯部分 */
 .title-contents {
   width: 100vw;
-  background-image: image-url('furima-header01.png');
+  background-image: image-url('4036050_s.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -49,6 +81,7 @@ a {
 
 /* FURIMAが選ばれる3つの理由部分 */
 .select-reason-contents {
+  background-color: #fcfcfc;
   padding: 5vh 15vw;
 }
 
@@ -64,7 +97,7 @@ a {
   content: '';
   width: 70px;
   height: 4px;
-  background-color: #3ccace;
+  background-color: #e7b351;
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -99,8 +132,8 @@ a {
   font-size: 30px;
   text-align: center;
   line-height: 60px;
-  background-color: #3ccace;
-  color: #fff;
+  background-color: #d89837;
+  color: rgb(255, 255, 255);
 }
 
 .reason-list-text {
@@ -110,7 +143,7 @@ a {
 }
 
 .reason-list-blue-text {
-  color: #3ccace;
+  color: #dd9a36;
 }
 
 .reason-list-description {
@@ -124,7 +157,8 @@ a {
 /* 画面中央の「会員数日本一位」帯部分*/
 .ad-contents {
   width: 100vw;
-  background-image: image-url('furima-header02.png');
+  height: 100vh;
+  background-image: image-url('4078501_m.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -233,7 +267,7 @@ a {
   font-size: 3vh;
   margin: 1vh 0;
   text-decoration: none;
-  color: #3ccace;
+  color: #e4a828;
   font-weight: bold;
 }
 
@@ -265,13 +299,13 @@ a {
   top: 40%;
   width: 100%;
   text-align: center;
-  background-color: crimson;
-  transform: skewY(-10deg);
+  background-color: rgb(220, 110, 20);
+  transform: skewY(-5deg);
 }
 
 .sold-out>span {
   color: #FFF;
-  font-size: 45px;
+  font-size: 40px;
   font: bold;
 }
 
